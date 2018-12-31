@@ -7,7 +7,7 @@ void setup() {
   //2. set the size of your window
   //  if you are using Processing 3, you cannot use variables
   //  because the developers don't know how programming is supposed to work.
-
+size(100,100);
   //3. initialize your array with the built in width variable
   nums = new int[width];
   //4. initialize the ints in the array with random numbers
@@ -19,24 +19,34 @@ for(int i = 0; i < width; i++)
 noStroke();
 }
 
-void draw() {
+void draw() 
+{
   //6. set the background color with background(r, g, b);
-background(g);
+background(80);
   //7. set the color for your graph
-
+fill(155);
   //8. draw a rectangle for each int in your array.
   //   the x value will be the current index in the array
   //   the y value will the height variable
   //   the width is 1 (one)
   //   the height is negative the value of the element at the current index of the array
-
+  for(int i = 0; i < width; i++)
+      rect(i, height, 1, -(nums[i]));
   //9. call the stepSort method
 stepSort(nums);
-  //10. extract the code that randomizes the array into a method.
-void randomizeArray(int[] array)
-{}
-  //11. call the method you made in step 10 when the mouse is pressed
 
+  //10. extract the code that randomizes the array into a method.
+
+  //11. call the method you made in step 10 when the mouse is pressed
+   if(mousePressed)
+     randomizeArray(nums);
+}
+
+void randomizeArray(int[] nums)
+{
+  Random gen = new Random();
+  for(int i = 0; i < width; i++)
+    nums[i] = gen.nextInt(height);
 }
 
 void stepSort(int[] arr) {
